@@ -4,13 +4,18 @@
 %%% @doc
 %%%
 %%% @end
-%%% Created : 07. Янв. 2019 15:42
+%%% Created : 08. Янв. 2019 22:37
 %%%-------------------------------------------------------------------
--module(area_server0).
+-module(area_server_final).
 -author("seet").
 
 %% API
--export([loop/0, rpc/2]).
+-export([start/0, area/2]).
+
+start() -> spawn(fun loop/0).
+
+area(Pid, What) ->
+  rpc(Pid, What).
 
 rpc(Pid, Request) ->
   Pid ! {self(), Request},
